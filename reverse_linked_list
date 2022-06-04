@@ -1,0 +1,17 @@
+// three pointer approach
+
+LinkedListNode<int> *reverseLinkedList(LinkedListNode<int> *head) 
+{
+    // Write your code here
+    LinkedListNode<int> *p = head;
+    LinkedListNode<int> *q = NULL;
+    LinkedListNode<int> *r = NULL;
+    while(p)
+    {
+        r = q;
+        q = p;
+        p = p->next;
+        q->next = r;
+    }
+    return q;
+}
