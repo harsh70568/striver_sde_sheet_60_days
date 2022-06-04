@@ -1,0 +1,27 @@
+#include <bits/stdc++.h> 
+
+total approach - 3
+// binary search is here, i have implement, Give all the elements a virtual index and then through this virtual index i can map my matrix elements through the operator / and %
+
+bool findTargetInMatrix(vector < vector < int >> & mat, int m, int n, int target) {
+    // Write your code here.
+    int low = 0;
+    int high = m*n-1;
+    while(low <= high)
+    {
+        int mid = (low+high)/2;
+        if(mat[mid/n][mid%n] == target)
+        {
+            return true;
+        }
+        else if(mat[mid/n][mid%n] < target)
+        {
+            low = mid+1;
+        }
+        else
+        {
+            high = mid-1;
+        }
+    }
+    return false;
+}
