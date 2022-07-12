@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+double median(vector<int> a, vector<int> b)
+{
+    // Write your code here.
+    int n = a.size();
+    int m = b.size();
+    
+    if(n > m) return median(b,a);
+    
+    int begin = 0;
+    int end = n;
+    
+    while(begin <= end)
+    {
+        int i1 = (begin+end)/2;
+        int i2 = (n+m+1)/2-i1;
+        
+        int min1 = (i1 == n) ? INT_MAX : a[i1];
+        int max1 = (i1 == 0) ? INT_MIN : a[i1-1];
+        
+        int min2 = (i2 == m) ? INT_MAX : b[i2];
+        int max2 = (i2 == 0) ? INT_MIN : b[i2-1];
+        
+        if((max1 <= min2) && (max2 <= min1))
+        {
+            if((n+m) % 2 == 0)
+            {
+                return ((double) (max(max1,max2) + min(min1,min2)) / 2);
+            }
+            else
+            {
+                return ((double) max(max1,max2));
+            }
+        }
+        else if(max1 > min2)
+        {
+            end = i1-1;
+        }
+        else
+        {
+            begin = i1+1;
+        }
+    }
+    return 0;
+}
